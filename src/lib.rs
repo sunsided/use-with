@@ -138,6 +138,47 @@ pub trait Use {
 
 impl<T> Use for T {}
 
+/// Executes a closure with a resource, ensuring the resource is properly utilized and dropped.
+///
+/// # Parameters
+/// - `resource`: The resource to be used.
+/// - `closure`: A closure that takes ownership of the resource and performs operations with it.
+///
+/// # Examples
+/// ```rust
+/// use use_with::using;
+///
+/// struct Resource(u32);
+///
+/// impl Resource {
+///     fn new(value: u32) -> Self {
+///         Resource(value)
+///     }
+/// }
+///
+/// let result = using!(Resource::new(10), it -> {
+///     it.0 + 32
+/// });
+/// assert_eq!(result, 42);
+///
+/// let resource = Resource::new(10);
+/// let result = using!(resource, value -> {
+///     value.0 + 32
+/// });
+/// assert_eq!(result, 42);
+/// ```
+///
+/// # Safety
+/// - The closure must not retain references to the resource beyond the scope of this function,
+///   as the resource will be dropped after the closure executes.
+#[macro_export]
+macro_rules! using {
+    ($resource:expr, $param:ident -> $body:block) => {{
+        let $param = $resource;
+        $body
+    }};
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

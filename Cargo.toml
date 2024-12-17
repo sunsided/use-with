@@ -1,6 +1,6 @@
 [package]
 name = "use-with"
-version = "0.1.0"
+version = "0.2.0"
 description = "Provides resource management utilities inspired by Kotlin's 'use' function and C#'s 'using' block, ensuring proper utilization and disposal of resources in Rust."
 authors = ["Markus Mayer <widemeadows@gmail.com>"]
 keywords = ["resource-mangement", "using", "dispose-pattern"]
