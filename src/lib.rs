@@ -83,7 +83,7 @@ pub trait Use {
     /// ```
     fn use_with<U, F: FnOnce(Self) -> U>(self, f: F) -> U
     where
-        Self: Sized
+        Self: Sized,
     {
         f(self)
     }
@@ -128,11 +128,9 @@ pub trait Use {
     where
         Self: Sized + Send,
         F: FnOnce(Self) -> Fut + Send,
-        Fut: Future<Output = U> + Send
+        Fut: Future<Output = U> + Send,
     {
-        async {
-            f(self).await
-        }
+        async { f(self).await }
     }
 }
 
@@ -337,13 +335,15 @@ mod tests {
             let state = Arc::clone(&shared_state);
 
             // Create a new Resource and use `use_with_async` to pass an async closure
-            Resource::default().use_with_async(|_res| async move {
-                let mut num = state.lock().await;
-                *num += 1;
-                println!("Shared state incremented: {}", *num);
-                // Simulate asynchronous work
-                tokio::time::sleep(std::time::Duration::from_millis(100)).await;
-            }).await;
+            Resource::default()
+                .use_with_async(|_res| async move {
+                    let mut num = state.lock().await;
+                    *num += 1;
+                    println!("Shared state incremented: {}", *num);
+                    // Simulate asynchronous work
+                    tokio::time::sleep(std::time::Duration::from_millis(100)).await;
+                })
+                .await;
             // `_res` is dropped here
         }
 

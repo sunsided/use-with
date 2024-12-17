@@ -1,6 +1,13 @@
 [package]
 name = "use-with"
 version = "0.1.0"
+description = "Provides resource management utilities inspired by Kotlin's 'use' function and C#'s 'using' block, ensuring proper utilization and disposal of resources in Rust."
+authors = ["Markus Mayer <widemeadows@gmail.com>"]
+keywords = ["resource-mangement", "using", "dispose-pattern"]
+categories = ["memory-management"]
+license = "MIT"
+repository = "https://github.com/sunsided/use-with"
+homepage = "https://github.com/sunsided/use-with"
 edition = "2021"
 rust-version = "1.75.0"
 
