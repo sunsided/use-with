@@ -19,7 +19,7 @@ and dropped, even in asynchronous contexts.
   ensuring that resources are properly utilized and dropped after the asynchronous operation completes.
 
 # Usage
-To use these functions, implement the `Use` trait for your resource type and call the appropriate method:
+To use these functions, the `Use` trait is auto-implemented for your resource types; simply call the appropriate method:
 
 ```rust
 use use_with::Use;
