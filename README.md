@@ -1,5 +1,7 @@
 # use_with
 
+[![codecov](https://codecov.io/gh/sunsided/use-with/graph/badge.svg?token=Ex1Ok4n9yd)](https://codecov.io/gh/sunsided/use-with)
+
 Provides resource management utilities, ensuring that resources are properly utilized
 and subsequently dropped, similar to patterns found in other programming languages like Kotlin's `use` function
 and C#'s `using` block.

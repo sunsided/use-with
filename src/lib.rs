@@ -40,6 +40,8 @@
 //! assert_eq!(result, 42);
 //! ```
 
+#![forbid(unsafe_code)]
+
 use std::future::Future;
 
 /// A trait that facilitates resource management by ensuring proper usage and subsequent dropping.
